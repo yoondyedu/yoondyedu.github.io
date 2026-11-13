@@ -1,0 +1,18 @@
+title: "AI Cording Project"
+description: "스타트업, 사회 이슈, 야구를 기록하고 연결합니다."
+lang: ko-KR
+timezone: Asia/Seoul
+url: ""
+baseurl: ""
+permalink: /posts/:title/
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - templates
+  - vendor

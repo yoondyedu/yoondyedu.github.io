@@ -1,0 +1,8 @@
+---
+layout: default
+title: 연재 모아보기
+permalink: /series/
+---
+<section class="page-head"><p class="eyebrow">SERIES</p><h1>하나의 질문을,<br>여러 편의 기록으로.</h1><p class="lead">연재별로 처음부터 차근차근 읽어보세요.</p></section>
+{% assign groups = site.posts | where_exp: 'post', 'post.series != nil' | group_by: 'series' %}
+{% for group in groups %}<section class="series-box"><h2>{{ group.name | escape }}</h2><ol>{% assign episodes = group.items | sort: 'series_order' %}{% for episode in episodes %}<li><a href="{{ episode.url | relative_url }}">{{ episode.title | escape }}</a></li>{% endfor %}</ol></section>{% endfor %}

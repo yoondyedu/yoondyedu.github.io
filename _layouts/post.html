@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="article">
+<header class="post-head"><p class="eyebrow">{{ page.category | escape }}{% if page.series %} / {{ page.series | escape }} · {{ page.series_order }}편{% endif %}</p><h1>{{ page.title | escape }}</h1><p class="muted"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time></p>{% if page.description %}<p class="lead">{{ page.description | escape }}</p>{% endif %}</header>
+<div class="prose">{{ content }}</div>
+{% if page.series %}
+{% assign episodes = site.posts | where: 'series', page.series | sort: 'series_order' %}
+<aside class="series-box" aria-label="연재 목차"><h2>{{ page.series | escape }}</h2><ol>{% for episode in episodes %}<li>{% if episode.url == page.url %}<strong aria-current="page">{{ episode.title | escape }}</strong>{% else %}<a href="{{ episode.url | relative_url }}">{{ episode.title | escape }}</a>{% endif %}</li>{% endfor %}</ol></aside>
+<nav class="post-nav" aria-label="연재 이동">{% for episode in episodes %}{% if episode.url == page.url %}{% unless forloop.first %}{% assign prev_index = forloop.index0 | minus: 1 %}{% assign prev_episode = episodes[prev_index] %}<a href="{{ prev_episode.url | relative_url }}">← 이전 편<br>{{ prev_episode.title | escape }}</a>{% endunless %}{% unless forloop.last %}{% assign next_index = forloop.index0 | plus: 1 %}{% assign next_episode = episodes[next_index] %}<a href="{{ next_episode.url | relative_url }}">다음 편 →<br>{{ next_episode.title | escape }}</a>{% endunless %}{% endif %}{% endfor %}</nav>
+{% endif %}
+<p><a href="{{ '/' | relative_url }}">← 전체 글 보기</a></p>
+</article>

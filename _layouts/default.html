@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+{% seo %}{% feed_meta %}
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 이동</a>
+<header class="header wrap"><a class="brand" href="{{ '/' | relative_url }}">AI Cording Project<span>관찰하고, 기록하고, 연결하기</span></a><nav aria-label="주 메뉴"><a href="{{ '/' | relative_url }}">글</a><a href="{{ '/series/' | relative_url }}">연재</a><a href="{{ '/about/' | relative_url }}">소개</a></nav></header>
+<main id="main" class="wrap">{{ content }}</main>
+<footer class="wrap footer"><span>AI Cording Project · {{ site.time | date: '%Y' }}</span><a href="{{ '/feed.xml' | relative_url }}">RSS 구독</a></footer>
+</body></html>

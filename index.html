@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<section class="hero"><p class="eyebrow">NOTES ON WHAT MATTERS</p><h1>생각을 쌓고,<br>관점을 넓히는 기록.</h1><p>스타트업의 도전, 사회의 변화, 야구의 순간들.<br>서로 다른 관심사를 하나의 기록으로 연결합니다.</p><a class="button" href="{{ '/series/' | relative_url }}">연재 모아보기 ↗</a></section>
+<section class="latest" aria-labelledby="latest-title"><div class="section-head"><h2 id="latest-title">모든 글</h2><span class="muted">{{ site.posts.size }}개의 기록</span></div>
+<div class="filters" role="group" aria-label="글 분류"><button type="button" data-category="전체" aria-pressed="true">전체</button><button type="button" data-category="스타트업" aria-pressed="false">스타트업</button><button type="button" data-category="사회 이슈" aria-pressed="false">사회 이슈</button><button type="button" data-category="야구" aria-pressed="false">야구</button></div>
+<div class="cards">{% for post in site.posts %}<article class="card" data-post-category="{{ post.category | escape }}"><p class="eyebrow">{{ post.category | escape }}</p><h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3><p>{{ post.description | default: post.excerpt | strip_html | truncate: 110 | escape }}</p><div class="card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% if post.series %}<span>{{ post.series | escape }} · {{ post.series_order }}편</span>{% endif %}</div></article>{% endfor %}</div><p id="empty" hidden>이 분류에는 아직 글이 없습니다.</p></section>
+<script>
+document.querySelectorAll('[data-category]').forEach(button => button.addEventListener('click', () => {
+const category = button.dataset.category;
+document.querySelectorAll('[data-category]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+let visible = 0;
+document.querySelectorAll('[data-post-category]').forEach(card => {card.hidden = category !== '전체' && card.dataset.postCategory !== category; if (!card.hidden) visible++;});
+document.getElementById('empty').hidden = visible > 0;
+}));
+</script>
