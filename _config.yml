@@ -16,3 +16,5 @@ exclude:
   - Gemfile.lock
   - templates
   - vendor
+url: "https://yoondyedu.github.io"
+baseurl: ""
