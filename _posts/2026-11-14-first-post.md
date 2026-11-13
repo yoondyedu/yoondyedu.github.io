@@ -3,7 +3,7 @@ layout: post
 title: "나의 첫 번째 글"
 date: 2026-11-14 09:00:00 +0900
 category: 스타트업
-series: "KAIST IP-CEO"
+series: "나의 창업 기록"
 series_order: 1
 description: "시범 Test글 입니다."
 ---
